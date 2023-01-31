@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .copy-frame {
+      background-color: lightgrey;
+      padding: 20px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Text to be copied</h1>
+  <div class="copy-frame">
+    <p id="text-to-copy">This text is supposed to be copied and pasted into another document.</p>
+  </div>
+  <button id="copy-button">Copy Text</button>
+  <p>This text is not supposed to be copied.</p>
+  <script>
+    const copyButton = document.querySelector("#copy-button");
+    const textToCopy = document.querySelector("#text-to-copy");
+    copyButton.addEventListener("click", function() {
+      const range = document.createRange();
+      range.selectNode(textToCopy);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+    });
+  </script>
+</body>
+</html>
